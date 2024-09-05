@@ -2,8 +2,8 @@ const userModel = require("../models/userModel");
 
 async function userDetailsController(req, res) {
   try {
-    console.log("USER DETAILS CONTROLLER");
-    console.log("USER ID : ", req.userId);
+    // console.log("USER DETAILS CONTROLLER");
+    // console.log("USER ID : ", req.userId);
     const user = await userModel.findById(req.userId);
     // console.log(user);
     res.status(200).json({
