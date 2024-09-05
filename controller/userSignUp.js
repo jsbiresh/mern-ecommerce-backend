@@ -35,12 +35,13 @@ async function userSignUpController(req, res) {
 
     const payload = {
       ...req.body,
+      role: "GENERAL",
       password: hashPassword,
     };
 
     const userData = new userModel(payload);
     const saveUser = await userData.save();
-    // console.log("User Created", saveUser);
+    console.log("User Created", saveUser);
     res.status(201).json({
       data: saveUser,
       success: true,

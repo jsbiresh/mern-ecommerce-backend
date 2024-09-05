@@ -1,13 +1,21 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const router = require("./routes/index");
 
 const connectDB = require("./config/db");
 
 const app = express();
-app.use(cors());
+// origin is the frontend url, it will dynamic, when we deploy
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api", router);
 
