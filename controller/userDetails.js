@@ -5,6 +5,7 @@ async function userDetailsController(req, res) {
     // console.log("USER DETAILS CONTROLLER");
     // console.log("USER ID : ", req.userId);
     const user = await userModel.findById(req.userId);
+    // alert(user);
     // console.log(user);
     res.status(200).json({
       data: user,

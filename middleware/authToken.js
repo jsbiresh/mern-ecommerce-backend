@@ -3,11 +3,14 @@ const jwt = require("jsonwebtoken");
 async function authToken(req, res, next) {
   try {
     const token = req.cookies?.token;
+    console.log("====================================");
+    console.log("AUTHTOKEN VERFIFIES TOKEN = ", token);
+    console.log("====================================");
 
     if (!token) {
       return res.status(401).json({
         data: [],
-        message: "User Not Logged In.",
+        message: "Please Login.",
         error: true,
         success: false,
       });
@@ -26,10 +29,9 @@ async function authToken(req, res, next) {
       //   console.log("DECODED : ", decoded);
       req.userId = decoded?._id; // Ensure req.user is properly initialized
       //   console.log("User ID:", req.userId);
+      // MOVE ON
+      next();
     });
-
-    // MOVE ON
-    next();
   } catch (err) {
     res.status(400).json({
       data: [],
